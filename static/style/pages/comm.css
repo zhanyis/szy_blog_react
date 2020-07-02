@@ -1,0 +1,35 @@
+body {
+  background-color: #f6f6f6;
+}
+
+.background-img-style {
+    min-height: 100%;
+}
+
+.index-right {
+  /* background-color: #fff; */
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  /* border: 1px solid #eee; */
+}
+
+.comm-left {
+  background-color: #FFF;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  /* border: 1px solid #eee; */
+}
+.comm-box {
+  background-color: #FFF;
+  margin-left: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: 1px solid #eee;
+}
+.comm-main {
+  margin-top: 0.5rem;
+}
+
+/* .list-icon {
+  padding: 0.5rem 0;
+} */

@@ -1,0 +1,43 @@
+.author-div{
+    text-align: center;
+    margin: 1rem;
+}
+
+.author-name {
+    font-size: 26px;
+    color: darkcyan;
+    padding:0.8rem;
+}
+
+.author-shortSentense {
+    font-size: 18px;
+    color:grey;
+}
+
+.author-introduction {
+    padding: 0.3rem;
+    text-align: center;
+}
+
+.author-detail {
+    /* display: flex;
+    padding-bottom: 0.3rem;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap; */
+    text-align: left;
+}
+
+.author-detail svg {
+    margin-right: 1rem;
+    margin-left: 2rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.account{
+    /* background-color: #999; */
+    margin-left: .5rem;
+    margin-right: .5rem;
+    font-size: 18px !important;
+}
