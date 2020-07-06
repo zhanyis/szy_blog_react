@@ -7,7 +7,7 @@ const TypeNav = (props) => {
         <div className="typenav-div comm-box">
             <Divider>分类</Divider>
             {props.data.map(item=>(
-                <Link key={item.typeName} href={{ pathname: '/tagtype', query: { id: item.Id } }}><Tag color={item.color}>{item.typeName}</Tag></Link>
+                <Link key={item.typeName} href={{ pathname: '/tagtype', query: { id: item.Id } }}><Tag style={{cursor:"pointer"}} color={item.color}>{item.typeName}</Tag></Link>
             ))}
         </div>
     )

@@ -1,0 +1,86 @@
+.outer-container {
+    padding: 0;
+    margin: 0;
+    background-color: papayawhip;
+}
+
+.weekly-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.weekly-today {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    color: #663300;
+}
+
+.weekly-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 700px;
+    margin: 1rem auto;
+}
+
+.weekly-itemcard {
+    min-width: 700px;
+    min-height: 100px;
+    margin: 1rem;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px 0 grey;
+    border: 1px solid #cccccc;
+    text-align: center;
+    padding: 1rem;
+}
+
+.weekly-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.weekly-text-done {
+    text-decoration: line-through;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #cc0000;
+    width: 400px;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+}
+
+.weekly-text-notdone {
+    display: inline-block;
+    padding: 0 50px;
+    padding-right: 60px;
+    font-size: 1.3rem;
+    color: black;
+    width: 450px;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+}
+
+.ant-switch {
+    margin-left: 2rem;
+}
+
+.ant-btn {
+    margin-right: 2rem !important;
+}
+
+.days-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.tag-list{
+    margin: 1rem;
+}

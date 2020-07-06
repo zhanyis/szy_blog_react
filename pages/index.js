@@ -6,7 +6,9 @@ import Author from '../components/Author'
 // import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import TypeNav from '../components/TypeNav'
+import SmallFunction from '../components/SmallFunciton'
 import ItemCard from '../components/ItemCard'
+import Cover from '../components/Cover'
 import '../static/style/pages/index.css'
 import servicePath from '../config/apiUrl'
 import { Row, Col, message, Button } from 'antd'
@@ -45,24 +47,27 @@ const HomePage = ({ list, toplist, typeInfo }) => {
       <Head name="SZYblog" />
       <div className="background-img-style" style={{ backgroundImage: `url(../static/images/background.jpeg)` }}>
         <Header />
+        <Cover />
         <Row className="comm-main" type="flex" justify="center" >
           <Col className="index-left" xs={24} sm={24} md={16} lg={18} xl={14} >
             <div className="top-container">
-              <h3>热门文章</h3>
               {top.map(item => (
+                <ItemCard atTop={true} key={item.id} data={item} marginTop={0} />
+              ))}
+            </div>
+            <div className="top-container">
+              <div className="index-container-title">Recent Article: </div>
+              {mylist.map(item => (
                 <ItemCard key={item.id} data={item} marginTop={0} />
               ))}
             </div>
-
-            {mylist.map(item => (
-              <ItemCard key={item.id} data={item} marginTop={14} />
-            ))}
             <div className="index-button"><Button loading={loading} size="large" type="primary" shape="round" onClick={loadMore}>加载更多</Button></div>
           </Col>
           <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4} >
             <Author />
             {/* <Advert /> */}
             <TypeNav data={typeInfo.data} />
+            <SmallFunction />
           </Col>
         </Row>
         <Footer />

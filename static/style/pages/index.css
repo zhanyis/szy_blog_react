@@ -1,5 +1,5 @@
 .index-header {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #1e90ff;
     padding: 0.5rem 0.5rem;
 }
@@ -13,16 +13,9 @@
 
 .top-container {
     background-color: #FFF;
-    padding: 1rem 0 0 0;
     border-radius: 0.3rem;
     margin-top: 1rem;
     border: 1px solid #eee;
-}
-
-.top-container h3 {
-    text-align: center;
-    font-size: 28px;
-    color: palevioletred;
 }
 
 .index-button {
@@ -30,4 +23,11 @@
     align-items: center;
     justify-content: center;
     padding-top: 1rem;
+}
+
+.index-container-title {
+    font-size: 1.5rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    margin: 0.5rem;
 }

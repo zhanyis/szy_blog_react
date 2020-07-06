@@ -42,8 +42,9 @@ const ItemCard = (props) => {
                         <Col xs={24} sm={24} md={20} lg={18} xl={18}>
                             <div className="list-title" >
                                 <Link href={{ pathname: '/detail', query: { id: props.data.id } }}><a>{props.data.title}</a></Link>
+                                {props.atTop ? <Tag color="purple">置顶</Tag> : <span></span>}
                                 <Link href={{ pathname: '/tagtype', query: { id: props.data.typeId } }}>
-                                    <Tag color={props.data.color}>{props.data.typeName}</Tag>
+                                    <Tag style={{cursor:"pointer"}} color={props.data.color}>{props.data.typeName}</Tag>
                                 </Link>
                             </div>
                             <div className="list-content" dangerouslySetInnerHTML={{ __html: marked(props.data.introduce) }}></div>

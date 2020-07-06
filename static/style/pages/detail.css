@@ -96,3 +96,12 @@ iframe{
 .ant-anchor-wrapper{
     padding: 5px !important;
 }
+
+.detailed-nav {
+    text-align: center;
+    margin: 1rem;
+}
+
+.toc-list{
+    text-align: left;
+}

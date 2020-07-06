@@ -16,8 +16,9 @@ import '../static/style/pages/detail.css'
 import Tocify from '../components/tocify.tsx'
 import servicePath from '../config/apiUrl'
 import { changeTime } from '../static/jsMethod/comm';
+import TypeNav from '../components/TypeNav'
 
-const Detailed = (props) => {
+const Detailed = ({ props, typeInfo }) => {
   const tocify = new Tocify();
   const renderer = new marked.Renderer();
   renderer.heading = function (text, level, raw) {
@@ -65,7 +66,7 @@ const Detailed = (props) => {
                 </div>
                 <div className="center">
                   <Link href={{ pathname: '/tagtype', query: { id: props.typeId } }}><Tag color={props.color}>{props.typeName}</Tag></Link>
-                  <span>{changeTime(props.addTime).y + ' '+ changeTime(props.addTime).m + ' ' + changeTime(props.addTime).d}</span>
+                  <span>{changeTime(props.addTime).y + ' ' + changeTime(props.addTime).m + ' ' + changeTime(props.addTime).d}</span>
                   <span><EyeTwoTone twoToneColor="#fffff" />浏览人数:{props.view_count}</span>
                 </div>
                 <Divider></Divider>
@@ -77,6 +78,7 @@ const Detailed = (props) => {
             </div>
           </Col>
           <Col className="comm-right" xs={0} sm={0} md={4} lg={6} xl={4}>
+            <TypeNav data={typeInfo.data} />
             <Affix offsetTop={5}>
               <div className="detailed-nav comm-box">
                 <div className="nav-title">文章目录</div>
@@ -105,9 +107,18 @@ Detailed.getInitialProps = async (context) => {
         resolve(res.data.data[0])
       }
     )
-  })
+  });
 
-  return await promise
+  const promise3 = new Promise((resolve) => {
+    axios(servicePath.getTypeInfo).then(
+      (res) => {
+        // console.log('------>', res.data)
+        resolve(res.data)
+      }
+    )
+  });
+  const [list, typeInfo] = await Promise.all([promise, promise3])
+  return { props: list, typeInfo: typeInfo }
 }
 
 export default Detailed
