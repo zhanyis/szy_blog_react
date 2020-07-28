@@ -1,8 +1,11 @@
 import '../static/style/components/cover.css';
+import {useContext} from 'react';
+import ThemeContext from '../static/jsMethod/context';
 
 const Cover = () => {
+    const theme = useContext(ThemeContext)
     return (
-        <div className="outercontainer-cover">
+        <div className={`outercontainer-cover ${theme.state.dark ? 'app-dark' : 'app-light'}`}>
             {/* <div className="c" >
                 <span className="c-person">(／‵Д′)／</span>~ <span className="c-table">╧╧</span>
 

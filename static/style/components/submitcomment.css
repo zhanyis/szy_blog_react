@@ -1,0 +1,46 @@
+.submit-comment-dark {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem 0.2rem;
+    border: 0.3rem solid #27496d;
+    padding: 0.3rem;
+}
+
+.submit-comment-light {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem 0.2rem;
+    border: 0.3rem solid #ffe2ff;
+    padding: 0.3rem;
+}
+
+.reply-list {
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+    border-radius: 5%;
+}
+
+.comment-display {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-box {
+    margin: 0.4rem;
+    padding: 0.2rem;
+}
+
+p {
+    margin: 0.2rem;
+    padding: 0.3rem;
+    word-wrap: break-word;
+	word-break: break-all;
+}
+
+.comment-list {
+    margin: 0.2rem;
+}
