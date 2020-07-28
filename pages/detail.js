@@ -1,24 +1,23 @@
-// import React from 'react'
-import Head from '../components/Head'
-import { Row, Col, Breadcrumb, Tag, Affix, Divider } from 'antd'
-import Header from '../components/Header'
-// import Author from '../components/Author'
-import Footer from '../components/Footer'
-import axios from 'axios'
-import marked from 'marked'
-import hljs from 'highlight.js'
-// import 'markdown-navbar/dist/navbar.css';
-import Link from 'next/link'
-// import 'highlight.js/styles/monokai-sublime.css'
-import 'highlight.js/styles/atom-one-dark.css'
-import { EyeTwoTone } from '@ant-design/icons';
-import '../static/style/pages/detail.css'
-import Tocify from '../components/tocify.tsx'
-import servicePath from '../config/apiUrl'
+import Head from '../components/Head';
+import { Row, Col, Tag, Affix, Divider } from 'antd';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import axios from 'axios';
+import marked from 'marked';
+import hljs from 'highlight.js';
+import Link from 'next/link';
+import 'highlight.js/styles/atom-one-dark.css';
+import '../static/style/pages/detail.css';
+import Tocify from '../components/tocify.tsx';
+import servicePath from '../config/apiUrl';
 import { changeTime } from '../static/jsMethod/comm';
-import TypeNav from '../components/TypeNav'
+import TypeNav from '../components/TypeNav';
+import { useContext } from 'react';
+import ThemeContext from '../static/jsMethod/context';
+import SubmitComment from '../components/SubmitComment';
 
-const Detailed = ({ props, typeInfo }) => {
+const Detailed = ({ props, typeInfo, comments, AID }) => {
+  const theme = useContext(ThemeContext)
   const tocify = new Tocify();
   const renderer = new marked.Renderer();
   renderer.heading = function (text, level, raw) {
@@ -52,35 +51,27 @@ const Detailed = ({ props, typeInfo }) => {
       <div className="background-img-style" style={{ backgroundImage: `url(../static/images/background.jpeg)` }}>
         <Header />
         <Row className="comm-main" type="flex" justify="center">
-          <Col className="comm-left" xs={24} sm={24} md={20} lg={18} xl={14}  >
+          <Col className={`comm-left ${theme.state.dark ? 'app-dark' : 'app-light'}`} xs={24} sm={24} md={20} lg={18} xl={14}  >
             <div>
-              <div className='bread-div'>
-                <Breadcrumb>
-                  <Breadcrumb.Item><Link href="/"><a>首页</a></Link></Breadcrumb.Item>
-                  <Breadcrumb.Item>文章</Breadcrumb.Item>
-                </Breadcrumb>
+              <div className="detailed-title">
+                {props.title}
               </div>
-              <div>
-                <div className="detailed-title">
-                  {props.title}
-                </div>
-                <div className="center">
-                  <Link href={{ pathname: '/tagtype', query: { id: props.typeId } }}><Tag color={props.color}>{props.typeName}</Tag></Link>
-                  <span>{changeTime(props.addTime).y + ' ' + changeTime(props.addTime).m + ' ' + changeTime(props.addTime).d}</span>
-                  <span><EyeTwoTone twoToneColor="#fffff" />浏览人数:{props.view_count}</span>
-                </div>
-                <Divider></Divider>
-                <div className="detailed-content"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                >
-                </div>
+              <div className="center">
+                <Link href={{ pathname: '/tagtype', query: { id: props.typeId } }}><Tag color={props.color}>{props.typeName}</Tag></Link>
+                <span>{changeTime(props.addTime).y + ' ' + changeTime(props.addTime).m + ' ' + changeTime(props.addTime).d}</span>
+              </div>
+              <Divider></Divider>
+              <div className="detailed-content"
+                dangerouslySetInnerHTML={{ __html: html }}
+              >
               </div>
             </div>
+            <SubmitComment comments={comments} AID={AID}/>
           </Col>
           <Col className="comm-right" xs={0} sm={0} md={4} lg={6} xl={4}>
             <TypeNav data={typeInfo.data} />
             <Affix offsetTop={5}>
-              <div className="detailed-nav comm-box">
+              <div className={`detailed-nav comm-box ${theme.state.dark ? 'app-dark' : 'app-light'}`}>
                 <div className="nav-title">文章目录</div>
                 <div className="toc-list">
                   {tocify && tocify.render()}
@@ -109,6 +100,15 @@ Detailed.getInitialProps = async (context) => {
     )
   });
 
+  const promise2 = new Promise((resolve) => {
+    axios(servicePath.getCommentById + id).then(
+      (res) => {
+        // console.log(res.data)
+        resolve(res.data)
+      }
+    )
+  });
+
   const promise3 = new Promise((resolve) => {
     axios(servicePath.getTypeInfo).then(
       (res) => {
@@ -117,8 +117,8 @@ Detailed.getInitialProps = async (context) => {
       }
     )
   });
-  const [list, typeInfo] = await Promise.all([promise, promise3])
-  return { props: list, typeInfo: typeInfo }
+  const [list, typeInfo, data] = await Promise.all([promise, promise3, promise2])
+  return { props: list, typeInfo: typeInfo, comments:data, AID: id }
 }
 
 export default Detailed

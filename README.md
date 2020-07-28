@@ -8,6 +8,8 @@
 
 这个repository只有博客页面，由next.js进行服务端渲染。
 
+新增dark mode 和评论功能 ！！
+
 后续会更新更多功能
 
 [学习视频JSPang](https://www.bilibili.com/video/BV1CJ411377B)

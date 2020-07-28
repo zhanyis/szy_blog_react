@@ -4,18 +4,11 @@
     padding: 0.5rem 0.5rem;
 }
 
-.index-left {
-    /* background-color: #fff; */
-    padding: 0.3rem;
-    border-radius: 0.3rem;
-    /* border: 1px solid #eee; */
-}
-
 .top-container {
-    background-color: #FFF;
+    /* background-color: #FFF; */
     border-radius: 0.3rem;
     margin-top: 1rem;
-    border: 1px solid #eee;
+    border: 1px solid transparent;
 }
 
 .index-button {

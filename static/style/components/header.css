@@ -1,9 +1,9 @@
 .header {
-    background-color: #FFF;
+    /* background-color: #FFF; */
     padding: 0.4rem;
     overflow: hidden;
     height: 3.2rem;
-    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid transparent;
     box-shadow: 0 1px 4px rgba(89, 90, 89, 0.28);
 }
 
@@ -11,15 +11,14 @@
     color: darkcyan;
     font-size: 1.4rem;
     text-align: left;
+    margin-left: 3rem;
 }
 
-.ant-menu {
-    line-height: 2.8rem;
+.header-switch{
+    display: flex;
+    align-items: center;
 }
 
-.ant-menu-item {
-    font-size: 1rem !important;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    color: black;
+.header-span {
+    margin-right: 1rem;
 }

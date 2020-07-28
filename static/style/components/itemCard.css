@@ -66,8 +66,12 @@ code {
 .list-context img {
     width: 100%;
     border-radius: 5px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid transparent;
     max-width: 1000px !important;
     display: block;
     margin: 8px auto;
+}
+
+.ant-card-bordered {
+    border: 1px solid transparent !important;
 }

@@ -7,8 +7,12 @@ import {
     EnvironmentOutlined,
     LinkOutlined,
 } from '@ant-design/icons';
+import {useContext} from 'react';
+import ThemeContext from '../static/jsMethod/context';
 
 const Author = () => {
+
+    const theme = useContext(ThemeContext)
 
     const moveToGitHub = () => {
         window.location.href = 'https://github.com/zhanyis';
@@ -19,7 +23,7 @@ const Author = () => {
     }
 
     return (
-        <div className="author-div comm-box">
+        <div className={`author-div comm-box ${theme.state.dark ? 'app-dark' : 'app-light'}`}>
             <div>
                 <Avatar size={100} src="../static/images/head.jpg" />
                 <div className="author-name">
@@ -34,7 +38,7 @@ const Author = () => {
                     <div className="author-detail"><LinkOutlined /><a href="http://114.55.250.155/oldblog/">旧Hexo博客</a></div>
                 </div>
                 <Divider></Divider>
-                <GithubOutlined onClick={moveToGitHub} style={{ color: 'black' }} className="account" />
+                <GithubOutlined onClick={moveToGitHub} style={{ color: theme.state.dark ? 'white' : 'black' }} className="account" />
                 <WeiboCircleOutlined onClick={moveToWeibo} style={{ color: 'red' }} className="account" />
             </div>
         </div >

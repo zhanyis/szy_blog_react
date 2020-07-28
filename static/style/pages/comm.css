@@ -6,30 +6,65 @@ body {
     min-height: 100%;
 }
 
-.index-right {
-  /* background-color: #fff; */
-  padding: 0.3rem;
-  border-radius: 0.3rem;
-  /* border: 1px solid #eee; */
+:root {
+  /* 模式切换变量，默认light模式 */
+  /* --current-background-color: var(--light-background-color);
+  --current-primary-color: var(--light-primary-color); */
+
+  /* 浅色主题 */
+  --light-primary-color: black;
+  --light-background-color: #fff;
+  --light-background-color-level-1: #ffe2ff;
+
+  /* 深色主题 */
+  --dark-primary-color: #fff;
+  --dark-background-color: #142850;
+  /* 浅一点的颜色 */
+  --dark-background-color-level-1: #27496d;
+  /* color-scheme: light dark; */
 }
 
 .comm-left {
-  background-color: #FFF;
+  /* background-color: #FFF; */
   padding: 0.3rem;
   border-radius: 0.3rem;
-  /* border: 1px solid #eee; */
+  border: 1px solid transparent;
 }
 .comm-box {
-  background-color: #FFF;
+  /* background-color: #FFF; */
   margin-left: 0.5rem;
   padding: 1rem;
   border-radius: 0.3rem;
-  border: 1px solid #eee;
+  border: 1px solid transparent;
 }
 .comm-main {
   margin-top: 0.5rem;
 }
 
-/* .list-icon {
-  padding: 0.5rem 0;
-} */
+.app-dark {
+  color: var(--dark-primary-color);
+  background-color: var(--dark-background-color);
+}
+
+.app-dark-1 {
+  color: var(--dark-primary-color);
+  background-color: var(--dark-background-color-level-1);
+}
+
+.app-light{
+  color: var(--light-primary-color);
+  background-color: var(--light-background-color);
+}
+
+.app-light-1{
+  color: var(--light-primary-color);
+  background-color: var(--light-background-color-level-1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: #efb1ff;
+}
