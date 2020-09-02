@@ -14,19 +14,25 @@
 }
 
 .author-introduction {
-    padding: 0.3rem;
-    text-align: center;
+    margin-top:0.2rem;
+    margin-bottom: 0.2rem;
+
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .author-detail {
-    text-align: left;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0.1rem;
 }
 
 .author-detail svg {
-    margin-right: 1rem;
-    margin-left: 2rem;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: 0 0.2rem;
 }
 
 .account{

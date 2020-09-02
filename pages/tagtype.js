@@ -36,7 +36,7 @@ const TagType = ({ list, typeInfo }) => {
               <ItemCard key={item.id} data={item} marginTop={14} />
             ))}
           </Col>
-          <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4} >
+          <Col className="comm-right" xs={0} sm={0} md={0} lg={4} xl={4} >
             <Author />
             {/* <Advert /> */}
             <TypeNav data={typeInfo.data} />
@@ -53,7 +53,7 @@ TagType.getInitialProps = async (context) => {
   const promise = new Promise((resolve) => {
     axios(servicePath.getListByTypeId + id).then(
       (res) => {
-        console.log('------>', res.data)
+        // console.log('------>', res.data)
         resolve(res.data)
       }
     )

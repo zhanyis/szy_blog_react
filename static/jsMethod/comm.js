@@ -35,4 +35,28 @@ function ymdhms(timeStamp) {
     return `${yy}/${mm + 1}/${dd} ${hh}:${m}:${s}`
 }
 
-export { changeTime, currentWeekday, ymdhms }
+function debounce(fn, delay) {
+    let timer = null
+    return function () {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(fn, delay)
+    }
+}
+
+function throttle(fn, delay) {
+    let flag = true
+    return function () {
+        if (!flag) {
+            return false
+        }
+        flag = false
+        setTimeout(() => {
+            fn()
+            flag = true
+        }, delay)
+    }
+}
+
+export { changeTime, currentWeekday, ymdhms, debounce, throttle }

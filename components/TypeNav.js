@@ -11,7 +11,7 @@ const TypeNav = (props) => {
         <div className={`typenav-div comm-box ${theme.state.dark ? 'app-dark' : 'app-light'}`}>
             <Divider style={cusstyle}>分类</Divider>
             {props.data.map(item=>(
-                <Link key={item.typeName} href={{ pathname: '/tagtype', query: { id: item.Id } }}><Tag style={{cursor:"pointer"}} color={item.color}>{item.typeName}</Tag></Link>
+                <Link key={item.typeName} href={{ pathname: '/tagtype', query: { id: item.Id } }}><Tag style={{cursor:"pointer",margin:"0.1rem"}} color={item.color}>{item.typeName}</Tag></Link>
             ))}
         </div>
     )

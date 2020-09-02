@@ -12,11 +12,12 @@ import Tocify from '../components/tocify.tsx';
 import servicePath from '../config/apiUrl';
 import { changeTime } from '../static/jsMethod/comm';
 import TypeNav from '../components/TypeNav';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import ThemeContext from '../static/jsMethod/context';
 import SubmitComment from '../components/SubmitComment';
 
 const Detailed = ({ props, typeInfo, comments, AID }) => {
+  const [artId, setArtId] = useState(AID)
   const theme = useContext(ThemeContext)
   const tocify = new Tocify();
   const renderer = new marked.Renderer();
@@ -24,7 +25,6 @@ const Detailed = ({ props, typeInfo, comments, AID }) => {
     const anchor = tocify.add(text, level);
     return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
   }
-
   marked.setOptions({
     renderer: renderer,
     gfm: true,
@@ -66,9 +66,9 @@ const Detailed = ({ props, typeInfo, comments, AID }) => {
               >
               </div>
             </div>
-            <SubmitComment comments={comments} AID={AID}/>
+            <SubmitComment comments={comments} AID={artId}/>
           </Col>
-          <Col className="comm-right" xs={0} sm={0} md={4} lg={6} xl={4}>
+          <Col className="comm-right" xs={0} sm={0} md={0} lg={4} xl={4}>
             <TypeNav data={typeInfo.data} />
             <Affix offsetTop={5}>
               <div className={`detailed-nav comm-box ${theme.state.dark ? 'app-dark' : 'app-light'}`}>

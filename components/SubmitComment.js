@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import servicePath from '../config/apiUrl';
 import { UserOutlined } from '@ant-design/icons';
-import { ymdhms } from '../static/jsMethod/comm';
+import { ymdhms, debounce, throttle } from '../static/jsMethod/comm';
 import ThemeContext from '../static/jsMethod/context';
 
 const { TextArea } = Input;
@@ -16,13 +16,23 @@ const CommentModel = ({ addComment, show, father, replyto }) => {
     const [text, setText] = useState('');
     const [userName, setUserName] = useState('');
     const theme = useContext(ThemeContext);
+    const submit = () => {
+        if(text === ''){
+            message.error('请输入点什么');
+            setText('');
+            return
+        }
+        addComment(text, father, userName, replyto); 
+        setText('');
+        setUserName('');
+    }
     if (show) {
         return (
             <div className={theme.state.dark ? 'submit-comment-dark' : 'submit-comment-light'}>
                 <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
-                <Input placeholder="输入名字..." value={userName} onChange={(e) => { setUserName(e.target.value) }} style={itemStyle} style={{ width: '20%' }} />
-                <TextArea maxLength={255} placeholder="输入评论..." value={text} onChange={(e) => { setText(e.target.value) }} style={itemStyle} style={{ width: '60%' }} autoSize onPressEnter={() => { addComment(text, father, userName, replyto); setText('');setUserName('') }} />
-                <Button type="primary" shape="round" style={itemStyle} style={{ width: '13%' }} onClick={() => { addComment(text, father, userName, replyto); setText('');setUserName('') }}>Submit</Button>
+                <Input placeholder="输入名字..." value={userName} onChange={(e) => { debounce(setUserName(e.target.value),500) }} style={itemStyle} style={{ width: '20%' }} />
+                <TextArea maxLength={255} placeholder="输入评论..." value={text} onChange={(e) => { setText(e.target.value) }} style={itemStyle} style={{ width: '60%' }} autoSize onPressEnter={throttle(submit,500)} />
+                <Button type="primary" shape="round" style={itemStyle} style={{ width: '13%' }} onClick={throttle(submit,500)}>Submit</Button>
             </div>
         )
     } else {
@@ -74,6 +84,7 @@ const Comment = ({ data, replylist }) => {
         }).then((res) => {
             if (res.data.isSuccess) {
                 message.success('成功')
+                dataProps.Id = res.data.newId
             } else {
                 message.error('失败')
             }
@@ -128,9 +139,12 @@ const SubmitComment = ({ comments, AID }) => {
         setReply(reply);
         setData(comment);
     }, [])
+
+    
     // 新增评论专用
     const addComment = (comment, father, userName) => {
         userName = userName === '' ? "anonymous" : JSON.stringify(userName);
+        
         const dataProps = {
             article_id: AID,
             content: JSON.stringify(comment),
@@ -145,14 +159,17 @@ const SubmitComment = ({ comments, AID }) => {
         }).then((res) => {
             if (res.data.isSuccess) {
                 message.success('成功')
+                dataProps.Id = res.data.newId
             } else {
                 message.error('失败')
             }
         })
         setData(data.concat(dataProps));
+        console.log(data)
     }
     return (
         <div>
+            <h1>Comments: </h1>
             <CommentModel addComment={addComment} show={true} father={null} />
             {data.map((item) => {
                 const replylist = reply.filter(r => {

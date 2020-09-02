@@ -13,6 +13,7 @@ import '../static/style/pages/index.css'
 import servicePath from '../config/apiUrl'
 import { Row, Col, message, Button } from 'antd'
 import ThemeContext from '../static/jsMethod/context';
+import { throttle } from '../static/jsMethod/comm';
 
 const HomePage = ({ list, toplist, typeInfo }) => {
 
@@ -65,9 +66,9 @@ const HomePage = ({ list, toplist, typeInfo }) => {
                 <ItemCard key={item.id} data={item} marginTop={2} />
               ))}
             </div>
-            <div className="index-button"><Button loading={loading} size="large" type="primary" shape="round" onClick={loadMore}>加载更多</Button></div>
+            <div className="index-button"><Button loading={loading} size="large" type="primary" shape="round" onClick={throttle(loadMore,500)}>加载更多</Button></div>
           </Col>
-          <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4} >
+          <Col className="comm-right" xs={0} sm={0} md={0} lg={4} xl={4} >
             <Author />
             <TypeNav data={typeInfo.data} />
           </Col>
