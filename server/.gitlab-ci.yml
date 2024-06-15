@@ -1,0 +1,14 @@
+image: docker:20.10.16
+
+before_script:
+  - docker info
+
+build:
+  stage: build
+  tags: 
+    - docker
+  script:
+    - docker build -t szyserver:v1 .
+    - docker stop szyserver
+    - docker rm szyserver
+    - docker run -p 7001:7001 -d --name szyserver -v /www/szyserver/uploadFile:/usr/src/app/uploadFile -v /www/szyserver/app/public:/usr/src/app/app/public -v /www/szyserver/video:/usr/src/app/video -v /www/szyserver/logs:/usr/src/app/logs szyserver:v1
